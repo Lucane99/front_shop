@@ -74,7 +74,7 @@ const Shipping = () => {
             value={formik.values.address}
             onChange={formik.handleChange}
             name="address"
-            size="lg" label="Adress" />
+            size="lg" label="Address" />
           <Input
             name="city"
             value={formik.values.city}

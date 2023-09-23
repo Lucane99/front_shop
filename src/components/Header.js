@@ -22,6 +22,11 @@ const adminProfile = [
     label: "Products",
     path: 'product_list'
   },
+  {
+    label: "Product Add",
+    path: 'product_add'
+  },
+
 
   {
     label: "Sign Out",

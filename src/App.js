@@ -18,10 +18,12 @@ import AuthRoutes from './components/AuthRoutes'
 import AdminRoutes from './components/AdminRoutes'
 import UserRoutes from './components/UserRoutes'
 import EditProduct from './pages/admin_page/EditProduct'
+import AdminProfile from './pages/admin_page/AdminProfile'
+
 
 const App = () => {
 
-  const numbers = [22, 55, 77];
+
 
 
   return (
@@ -36,6 +38,8 @@ const App = () => {
             <Route path='product_list' element={<ProductList />} />
             <Route path='product_add' element={<AddProduct />} />
             <Route path='update/product/:id' element={<EditProduct />} />
+            <Route path='admin_profile' element={<AdminProfile />} />
+
           </Route>
 
 

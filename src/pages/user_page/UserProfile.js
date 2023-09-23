@@ -15,6 +15,7 @@ import { useUserUpdateMutation } from "../../features/auth/authApi";
 import { updateUser } from "../../features/userSlice";
 import { useGetOrderByUserQuery } from "../../features/order/order_api";
 import { baseUrl } from "../../constants/constants";
+import { useNavigate } from "react-router";
 
 const TABLE_ROWS = [
   {
@@ -49,6 +50,7 @@ const TABLE_HEAD = ["Name", "Qty", "Product", "Price"];
 
 
 const UserProfile = () => {
+  const nav = useNavigate();
   const { user } = useSelector((store) => store.userInfo);
   const dispatch = useDispatch();
   const [userUpdate, { isLoading, isError }] = useUserUpdateMutation();
@@ -194,7 +196,7 @@ const UserProfile = () => {
                           </Typography>
                         </td>
                         <td className={classes}>
-                          <Typography as="a" href="#" variant="small" className="font-medium">
+                          <Typography as="a" href="order/${order.id}" variant="small" className="font-medium">
                             {price}
                           </Typography>
                         </td>

@@ -26,7 +26,7 @@ const AddProduct = () => {
     ),
     brand: Yup.string().min(5, 'too short').max(200, 'max character 200').required(),
     category: Yup.string().min(5, 'too short').max(20, 'max character 20').required(),
-    countInStock: Yup.string().min(1, 'too short').max(3, 'max character 3').required()
+    countInStock: Yup.string().min(1, 'too short').max(5, 'max character 5').required()
   });
 
   const formik = useFormik({

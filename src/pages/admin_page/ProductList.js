@@ -4,6 +4,7 @@ import { useGetAllProductsQuery, useProductRemoveMutation } from '../../features
 import { Image, Shimmer } from 'react-shimmer'
 import { baseUrl } from '../../constants/constants';
 import { Fragment, useState } from "react";
+import { useSelector } from 'react-redux';
 import {
   Button,
   Dialog,
@@ -14,6 +15,7 @@ import {
 import { toast } from 'react-toastify';
 
 const ProductList = () => {
+  const { user } = useSelector((store) => store.userInfo);
 
   const [open, setOpen] = useState(false);
 
@@ -25,10 +27,20 @@ const ProductList = () => {
 
   const [removeProduct] = useProductRemoveMutation();
 
-  const remove = async () => {
+  const remove = async (product) => {
     try {
-      const reponse = await removeProduct().unwrap();
+      const reponse = await removeProduct({
+        id: product._id,
+        token: user.token,
+        imagePath: product.product_image
+
+      }).unwrap();
+
+
+      handleOpen();
       toast.success('successfully remove');
+
+
     } catch (err) {
       toast.error(err.data.message);
     }
@@ -45,10 +57,12 @@ const ProductList = () => {
   return (
 
     <div >
+      <div className='p-5'>   <h1 className='text-2xl tracking-wide   font-bold'>Products Lists</h1></div>
+
       {data && data.map((product) => {
         return <div key={product._id} className='p-10 grid grid-cols-3 '>
           <div className='col-span-2'>
-            <h1 className='text-2xl tracking-wide   font-bold'>Products Lists</h1>
+
 
             <div className='grid grid-cols-5 mt-9 gap-10 items-center '>
               <Image
@@ -80,7 +94,7 @@ const ProductList = () => {
                       >
                         <span>Cancel</span>
                       </Button>
-                      <Button variant="gradient" color="green" onClick={handleOpen}>
+                      <Button variant="gradient" color="green" onClick={() => remove(product)}>
                         <span>Confirm</span>
                       </Button>
                     </DialogFooter>
@@ -95,9 +109,7 @@ const ProductList = () => {
 
 
           </div>
-          <div className='justify-self-end '>
-            <button onClick={() => nav('/product_add')} className='bg-black text-white px-5 py-1'>Add Product</button>
-          </div>
+
 
 
         </div>

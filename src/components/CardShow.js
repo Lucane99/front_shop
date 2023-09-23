@@ -41,6 +41,7 @@ const CardShow = ({ product }) => {
             {product.reviews.length > 0 ? icons.map((ic, i) => {
               return <i className={ic} key={i}></i>
             }) : 'No Reviews yet'}
+
           </div>
           <span>{product.numReviews} reviews</span>
         </div>

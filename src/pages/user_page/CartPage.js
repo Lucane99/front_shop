@@ -13,6 +13,7 @@ const CartPage = () => {
   const dispatch = useDispatch();
 
   const total = carts.reduce((acc, item) => acc + item.price * item.qty, 0);
+  const numbers = [1, 2, 3, 4, 5]
 
   return (
     <div>
@@ -33,6 +34,8 @@ const CartPage = () => {
 
               <h1>{cart.name}</h1>
               <p>Rs.{cart.price}</p>
+
+
 
               <select defaultValue={cart.qty} onChange={(e) => {
 
